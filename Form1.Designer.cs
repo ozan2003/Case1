@@ -30,6 +30,7 @@
         {
             toolPanel = new Panel();
             btnSave = new Button();
+            btnClear = new Button();
             btnOpen = new Button();
             btnYellow = new Button();
             btnGreen = new Button();
@@ -50,6 +51,7 @@
             // 
             toolPanel.BackColor = Color.LightGray;
             toolPanel.Controls.Add(btnSave);
+            toolPanel.Controls.Add(btnClear);
             toolPanel.Controls.Add(btnOpen);
             toolPanel.Controls.Add(btnYellow);
             toolPanel.Controls.Add(btnGreen);
@@ -72,12 +74,21 @@
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(10, 401);
+            btnSave.Location = new Point(10, 441);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(100, 30);
             btnSave.TabIndex = 13;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
+            // 
+            // btnClear
+            // 
+            btnClear.Location = new Point(10, 401);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(100, 30);
+            btnClear.TabIndex = 14;
+            btnClear.Text = "Clear";
+            btnClear.UseVisualStyleBackColor = true;
             // 
             // btnOpen
             // 
@@ -225,6 +236,7 @@
         private Button btnGreen;
         private Button btnYellow;
         private Button btnSave;
+        private Button btnClear;
         private Button btnOpen;
     }
 }

@@ -88,6 +88,8 @@ public partial class Form1 : Form
         // Dosya işlemleri
         btnSave.Click += BtnSave_Click;
         btnOpen.Click += BtnOpen_Click;
+
+        btnClear.Click += BtnClear_Click;
     }
 
     /// <summary>
@@ -645,6 +647,17 @@ public partial class Form1 : Form
             null => throw new ArgumentNullException(nameof(type), "Shape type cannot be null"),
             _ => throw new ArgumentException($"Unknown shape type: {type}"),
         };
+    }
+
+    /// <summary>
+    /// Buton tıklaması ile tüm şekilleri temizler.
+    /// </summary>
+    /// <param name="sender"> Butonun tıklanma olayı. </param>
+    /// <param name="e"> Buton tıklama olay bilgisi. </param>
+    private void BtnClear_Click(object? sender, EventArgs e)
+    {
+        shapes.Clear();
+        Invalidate();
     }
 }
 
