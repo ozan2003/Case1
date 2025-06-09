@@ -257,16 +257,7 @@ public class HexagonShape : Shape
 
     public override void Draw(Graphics g)
     {
-        Point[] points = new Point[6];
-        for (int i = 0; i < 6; ++i)
-        {
-            double angle = i * Math.PI / 3; // 60 derecenin radyan karşılığı
-            // Her nokta için merkezden 60 derece dön.
-            points[i] = new Point(
-                (int)(Center.X + Radius * Math.Cos(angle)),
-                (int)(Center.Y + Radius * Math.Sin(angle))
-            );
-        }
+        Point[] points = Points();
 
         using (var brush = new SolidBrush(Color))
         {
