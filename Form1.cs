@@ -37,6 +37,7 @@ public partial class Form1 : Form
 
     private bool isDrawing = false;
     private bool isMoving = false;
+    private bool hasMoved = false;
 
     private Point startPoint;
     private Point currentPoint; // Önizleme için kullanılan nokta
@@ -272,6 +273,7 @@ public partial class Form1 : Form
             movingShape = hitShape;
 
             isMoving = true;
+            hasMoved = false;
             lastMousePosition = e.Location;
 
             this.Cursor = Cursors.Hand;
@@ -292,19 +294,20 @@ public partial class Form1 : Form
     /// Fare bırakma ile şekil taşıma işlemini tamamlar.
     /// </summary>
     /// <param name="e"> Fare olay bilgisi </param>
-    private void HandleMovingMouseUp(MouseEventArgs _e)
+    private void HandleMovingMouseUp(MouseEventArgs e)
     {
         if (isMoving)
         {
-            isMoving = false;
-            movingShape = null;
-            this.Cursor = Cursors.Default;
-
-            if (selectedShape != null)
+            // Sadece şeklin üzerine tıkladıysak rengi değiştir.
+            if (!hasMoved && selectedShape != null)
             {
-                // Seçilen şeklin rengini güncelle.
                 selectedShape.Color = selectedColor;
             }
+            
+            isMoving = false;
+            movingShape = null;
+            hasMoved = false;
+            this.Cursor = Cursors.Default;
         }
     }
 
@@ -320,10 +323,15 @@ public partial class Form1 : Form
             int deltaX = e.X - lastMousePosition.X;
             int deltaY = e.Y - lastMousePosition.Y;
 
-            movingShape.Center = new Point(
-                movingShape.Center.X + deltaX,
-                movingShape.Center.Y + deltaY
-            );
+            // Şekli hareket ettirdik mi?
+            if (deltaX != 0 || deltaY != 0)
+            {
+                hasMoved = true;
+                movingShape.Center = new Point(
+                    movingShape.Center.X + deltaX,
+                    movingShape.Center.Y + deltaY
+                );
+            }
 
             lastMousePosition = e.Location;
             Invalidate();
