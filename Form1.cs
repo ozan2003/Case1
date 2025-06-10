@@ -29,7 +29,8 @@ public partial class Form1 : Form
 {
     private readonly List<Shape> shapes; // Tüm şekilleri tutan liste
 
-    private ShapeType? selectedType = null; // Seçili şekil tipi
+    // Seçili şekil tipi
+    private ShapeType? selectedType = ShapeType.Rectangle; // Hiçbir şekil seçilmemişse dikdörtgen varsayılsın.
     private Color selectedColor = Color.Black;
 
     private InteractionMode currentMode = InteractionMode.Creating;
